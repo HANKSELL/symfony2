@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ asset('css/simple-sidebar.css') }}" rel="stylesheet">
+    
+    </head>
+    <body>
+        
+        <div id="header">
+            <img src="{{ asset('img/logoudh.png') }}" height="60"/>
+            <div class="welcome">Bienvenido: Jorge Flores</div>
+        </div>
+
+               <div id="menu">
+            <ul>
+                <li><a href="{{ path('homepage') }}">Inicio</a></li>
+                <li><a href="{{ path('app_roles_index') }}">Roles</a></li>
+                <li><a href="{{ path('app_usuarios_index') }}">Usuarios</a></li>
+                <li><a href="#">Categorias</a></li>
+                <li><a href="#">Productos</a></li>
+                <li><a href="#">Salir</a></li>
+            </ul>
+        </div>
+
+
+        <div id="content">
+        
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {% block body %}{% endblock %}
+            {% block javascripts %}{% endblock %}
+            
+        </div>
+        <div id="footer">
+            Todos los Derechos Reservados 2015
+        </div>
+    </body>
+</html>
